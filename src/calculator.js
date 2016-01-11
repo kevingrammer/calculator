@@ -1,8 +1,9 @@
+// Hardcoded data.
 var data = {
   buttons: [
-    [ '7', '8', '9', '/' ],
+    [ '1', '2', '3', '/' ],
     [ '4', '5', '6', '*' ],
-    [ '1', '2', '3', '-' ],
+    [ '7', '8', '9', '-' ],
     [ '0', '.', '=', '+' ]
   ]
 };
@@ -10,36 +11,30 @@ var data = {
 var Calculator = React.createClass({
   getInitialState: function() {
     return {
-      screenValue: '123',
+      screenValue: '234',
       result: null
     };
   },
   render: function() {
     return (
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <Screen value={this.state.screenValue} />
-            </td>
-          </tr>
-          <ButtonGrid buttons={data.buttons} />
-        </tbody>
-      </table>
-    );
-  }
-});
-
-var Screen = React.createClass({
-  render: function() {
-    return (
-      <div id="screen">
-        {this.props.value}
+      <div>
+        <Screen value={this.state.screenValue} />
+        <ButtonGrid buttons={data.buttons} />
       </div>
     );
   }
 });
 
+// Screen to display current value or result.
+var Screen = React.createClass({
+  render: function() {
+    return (
+      <div id="screen">{this.props.value}</div>
+    );
+  }
+});
+
+// A single button.
 var Button = React.createClass({
   handleClick: function(id) {
   },
@@ -54,28 +49,41 @@ var Button = React.createClass({
   }
 });
 
+// A row of buttons.
 var ButtonRow = React.createClass({
   render: function() {
     var buttons = this.props.buttons;
     return (
-      <tr>
+      <div className="buttonRow">
         {buttons.map(function(id) {
-          return (<td><Button key={id} id={id} /></td>)
+          return (
+            <span key={id}>
+              <Button key={id} id={id} />
+            </span>)
         })}
-      </tr>
+      </div>
     );
   }
 });
 
+// A matrix of buttons.
 var ButtonGrid = React.createClass({
   render: function() {
-    var buttons = this.props.buttons.map(function(bRow) {
-      return (
-        <ButtonRow buttons={bRow} />
-      );
-    });
+    var buttons = this.props.buttons;
+    var createKey = function(row) {
+      return row.join('');
+    }
     return (
-      <table>{buttons}</table>
+      <div className="buttonGrid">
+        {buttons.map(function(bRow) {
+            return (
+              <div key={createKey(bRow)}>
+                <ButtonRow buttons={bRow} />
+              </div>
+            );
+          })
+        }
+      </div>
     );
   }
 });
