@@ -7,10 +7,16 @@ body {
   border: 1px solid black;
   text-align: right;
   padding: 3px;
-  width: 100px;
+  width: 104px;
+  margin-left: 2px;
+  margin-bottom: 4px;
+}
+
+.buttonContainer {
+  display: inline-block;
+  padding: 2px;
 }
 
 .button {
-  display: inline-block;
-  padding: 2px;
+  width: 25px;
 }

@@ -40,8 +40,8 @@ var Button = React.createClass({
   },
   render: function() {
     return (
-      <div className="button">
-        <button onclick={this.handleClick(this.props.id)}>
+      <div className="buttonContainer">
+        <button className="button" onclick={this.handleClick(this.props.id)}>
           {this.props.id}
         </button>
       </div>
