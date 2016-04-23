@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import CalculatorContainer from './CalculatorContainer.jsx';
+import CalculatorContainer from './components/CalculatorContainer.jsx';
 
 class App extends React.Component {
   render() {

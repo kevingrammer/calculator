@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ButtonContainer from './ButtonContainer.jsx';
+import ButtonsContainer from './ButtonsContainer.jsx';
 import Screen from './Screen.jsx';
 
 class CalculatorContainer extends React.Component {
@@ -20,7 +20,7 @@ class CalculatorContainer extends React.Component {
 
         <Screen value={this.state.screenText} />
 
-        <ButtonContainer
+        <ButtonsContainer
           buttonClick={(button) => this.onButtonClick(button)}
           />
 
@@ -29,6 +29,7 @@ class CalculatorContainer extends React.Component {
   }
 
   onButtonClick (button) {
+
     let newState = {
       screenText: this.state.screenText + button
     };

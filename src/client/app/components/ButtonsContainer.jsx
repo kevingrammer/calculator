@@ -1,18 +1,14 @@
 import React from 'react';
 
 import ButtonRow from './ButtonRow.jsx';
+import * as constants from '../constants';
 
-class ButtonContainer extends React.Component {
+class ButtonsContainer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      buttons: [
-        [ '1', '2', '3', '/' ],
-        [ '4', '5', '6', '*' ],
-        [ '7', '8', '9', '-' ],
-        [ '0', '.', '=', '+' ]
-      ]
+      buttons: constants.BUTTON_MAP
     };
   }
 
@@ -40,4 +36,4 @@ class ButtonContainer extends React.Component {
 
 }
 
-export default ButtonContainer;
+export default ButtonsContainer;
