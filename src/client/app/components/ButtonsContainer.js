@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ButtonRow from './ButtonRow.jsx';
+import ButtonRow from './ButtonRow';
 import * as constants from '../constants';
 
 class ButtonsContainer extends React.Component {

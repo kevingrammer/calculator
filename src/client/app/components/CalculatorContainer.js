@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ButtonsContainer from './ButtonsContainer.jsx';
-import Screen from './Screen.jsx';
+import ButtonsContainer from './ButtonsContainer';
+import Screen from './Screen';
 
 class CalculatorContainer extends React.Component {
 
