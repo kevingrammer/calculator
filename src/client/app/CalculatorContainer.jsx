@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ButtonContainer from './ButtonContainer.jsx';
+import Screen from './Screen.jsx';
 
 class CalculatorContainer extends React.Component {
 
@@ -17,9 +18,7 @@ class CalculatorContainer extends React.Component {
     return (
       <div className="calcContainer">
 
-        <div className="screenText">
-          {this.state.screenText}
-        </div>
+        <Screen value={this.state.screenText} />
 
         <ButtonContainer
           buttonClick={(button) => this.onButtonClick(button)}
