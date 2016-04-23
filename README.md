@@ -1,7 +1,7 @@
-# calculator
-Testing ReactJS by creating a simple calculator.
-
-Using the [Offline Transform](https://facebook.github.io/react/docs/getting-started.html).
+# React Calculator
+Learning ReactJS by creating a simple calculator.
 
 Run
-`babel --presets react src --watch --out-dir build`
+`npm install && npm run dev`
+
+then open `src/client/index.html` in the browser

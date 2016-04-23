@@ -3,10 +3,16 @@ body {
   font-size: 11pt;
 }
 
-#screen {
+.calcContainer {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.screenText {
+  font-family: monospace;
   border: 1px solid black;
   text-align: right;
-  padding: 3px;
+  padding: 3px 6px 3px 3px;
   width: 104px;
   margin-left: 2px;
   margin-bottom: 4px;
@@ -17,6 +23,12 @@ body {
   padding: 2px;
 }
 
+.buttonRow {
+  display: inline;
+  position: relative;
+}
+
 .button {
   width: 25px;
+  cursor: pointer;
 }
