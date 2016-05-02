@@ -1,21 +1,21 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
-
 var config = {
-  entry: APP_DIR + '/index.jsx',
+  entry: __dirname + '/app',
   output: {
-    path: BUILD_DIR,
-    filename: 'app.js'
+    path: __dirname + '/',
   },
+  devtool: 'source-maps',
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
-        include: APP_DIR,
-        loader: 'babel'
+        test: /\.js$/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react'],
+          plugins: ['transform-class-properties']
+        }
       }
     ]
   }
