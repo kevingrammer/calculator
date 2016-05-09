@@ -21,7 +21,6 @@ class Button extends React.Component {
   }
 
   handleButtonClick(e, button) {
-    console.log('button click');
     e.preventDefault();
     this.props.buttonClick(button);
   }
