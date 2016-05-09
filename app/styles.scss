@@ -1,0 +1,44 @@
+body {
+  font-family: sans-serif;
+  font-size: 11pt;
+}
+
+.calcContainer {
+  padding: 10px;
+  border: 3px solid coral;
+  border-radius: 12px;
+  /*border-style: outset;*/
+  width: 120px;
+}
+
+.screen {
+  border: 1px solid black;
+  padding: 3px 6px 3px 3px;
+  width: 104px;
+  height: 16px;
+  margin-left: 2px;
+  margin-bottom: 4px;
+}
+
+.screenText {
+  font-family: monospace;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.buttonContainer {
+  display: inline-block;
+  padding: 2px;
+}
+
+.buttonRow {
+  display: block;
+}
+
+.button {
+  display: inline;
+  border-radius: 5px;
+  width: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}

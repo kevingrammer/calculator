@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import ButtonsContainer from './ButtonsContainer';
 import Screen from './Screen';
+import '../styles.scss';
 
 class CalculatorContainer extends React.Component {
 
