@@ -1,6 +1,11 @@
 # React Calculator
 Learning ReactJS by creating a simple calculator.
 
-Run
+Install dependencies
 `npm install`
-`node .`
+
+Run the server
+`npm start`
+
+Go to
+`localhost:3000`
