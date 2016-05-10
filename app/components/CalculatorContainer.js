@@ -136,6 +136,7 @@ class CalculatorContainer extends React.Component {
           // screen text.
           newState.screenText = '';
           newState.num1 = result;
+          // newState.num2 = state.screenText;
           newState.operator = button;
           this.setState(newState);
         }
@@ -145,7 +146,9 @@ class CalculatorContainer extends React.Component {
 
         if(state.prevButton === '=') {
           // Repeat the previous calculation.
-          newState.screenText = this.evaluateExpression(state.screenText, state.num2, state.operator);
+          if(!isNaN(Number(state.screenText)) && state.num2 && state.operator) {
+            newState.screenText = this.evaluateExpression(state.screenText, state.num2, state.operator);
+          }
 
         } else if (state.num1 && state.operator && state.screenText.length && !isNaN(Number(state.screenText))) {
           // If we have an complete expression, evaluate it.
