@@ -126,19 +126,28 @@ class CalculatorContainer extends React.Component {
           newState.screenText = '';
           this.setState(newState);
 
+        } else if (!isNaN(Number(state.screenText))) {
+          // Handles the case where user inputs "3,+,5,-",
+          // should display result of "3+5" and setup "{result} - ".
+          let result = this.evaluateExpression(state.num1, state.screenText, state.operator);
+          // @todo Should display the result as screen text, but will need to
+          // implement a new way to know when previous action was evaluating
+          // an expression so that the next digit entered will replace the
+          // screen text.
+          newState.screenText = '';
+          newState.num1 = result;
+          newState.operator = button;
+          this.setState(newState);
         }
-        // else if (!isNaN(Number(state.screenText))) {
-        //   newState.screenText = this.evaluateExpression(state.num1, state.screenText);
-        //   this.setState(newState);
-        // }
         break;
 
       case 'evaluate':
+
         if(state.prevButton === '=') {
           // Repeat the previous calculation.
           newState.screenText = this.evaluateExpression(state.screenText, state.num2, state.operator);
 
-        } else if (state.num1 && state.operator && !isNaN(Number(state.screenText))) {
+        } else if (state.num1 && state.operator && state.screenText.length && !isNaN(Number(state.screenText))) {
           // If we have an complete expression, evaluate it.
           newState.screenText = this.evaluateExpression(state.num1, state.screenText, state.operator);
           newState.num1 = null;
