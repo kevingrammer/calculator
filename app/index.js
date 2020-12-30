@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 import CalculatorContainer from './components/CalculatorContainer';
 
-class App extends React.Component {
+class App extends Component {
   render() {
-
-    return (
-      <div>
-        <CalculatorContainer />
-      </div>
-    );
+    return <CalculatorContainer />;
   }
 }
 

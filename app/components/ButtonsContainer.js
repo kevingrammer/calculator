@@ -1,39 +1,17 @@
 import React from 'react';
-
 import ButtonRow from './ButtonRow';
-import * as constants from '../constants';
+import { BUTTON_MAP } from '../constants';
 
-class ButtonsContainer extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      buttons: constants.BUTTON_MAP
-    };
-  }
-
-  render() {
-
-    return (
-      <div className="buttonContainer">
-
-      { this.state.buttons.map((row, i) => {
-        return (
-          <div key={'row' + i}>
-
-            <ButtonRow
-              buttons={row}
-              buttonClick={(button) => this.props.buttonClick(button)}
-              />
-
-          </div>
-        );
-      })}
-
+const ButtonsContainer = ({ buttonClick, buttons }) => (
+  <div className="buttonContainer">
+    {BUTTON_MAP.map((row, i) => (
+      <div key={'row' + i}>
+        <ButtonRow
+          buttons={row}
+          buttonClick={buttonClick}
+        />
       </div>
-    );
-  }
-
-}
-
+    ))}
+  </div>
+);
 export default ButtonsContainer;
