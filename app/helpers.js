@@ -1,5 +1,4 @@
 export function getButtonType(buttonId) {
-
   switch(buttonId) {
     case '/':
     case '*':

@@ -15,7 +15,11 @@ class Button extends Component {
     const { button } = this.props;
     return (
       <div className="buttonContainer">
-        <button className="button" onClick={this.handleButtonClick}>
+        <button
+          className="button"
+          onClick={this.handleButtonClick}
+          tabIndex={0}
+        >
           {button}
         </button>
       </div>
