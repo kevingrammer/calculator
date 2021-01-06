@@ -1,10 +1,8 @@
 import React from 'react';
 import { getButtonType } from '../helpers';
 import _ from 'lodash';
-
 import ButtonsContainer from './ButtonsContainer';
 import Screen from './Screen';
-import '../styles.scss';
 
 const shouldClearAll = ({ calcs, num1, prevButton, screenText }) => {
   return prevButton === 'clear' && !screenText && (calcs.length > 0 || num1 !== null);
