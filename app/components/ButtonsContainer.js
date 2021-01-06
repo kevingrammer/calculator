@@ -3,7 +3,7 @@ import ButtonRow from './ButtonRow';
 import { BUTTON_MAP } from '../constants';
 
 const ButtonsContainer = ({ buttonClick, buttons }) => (
-  <div className="buttonContainer">
+  <div className="buttonContainer" role="group" aria-label="calculator buttons">
     {BUTTON_MAP.map((row, i) => (
       <div key={'row' + i}>
         <ButtonRow
