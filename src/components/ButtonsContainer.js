@@ -7,10 +7,7 @@ const ButtonsContainer = ({ buttonClick, buttons }) => (
   <div className="buttonContainer" role="group" aria-label="calculator buttons">
     {buttons.map((row, i) => (
       <div key={'row' + i}>
-        <ButtonRow
-          buttons={row}
-          buttonClick={buttonClick}
-        />
+        <ButtonRow buttons={row} buttonClick={buttonClick} />
       </div>
     ))}
   </div>

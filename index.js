@@ -11,6 +11,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.listen(3000, function() {
-    console.log('listening on port 3000');
+app.listen(3000, function () {
+  console.log('listening on port 3000');
 });

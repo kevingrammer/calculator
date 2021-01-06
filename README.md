@@ -1,4 +1,5 @@
 # React Calculator
+
 Learning ReactJS by creating a simple calculator.
 
 Install dependencies
