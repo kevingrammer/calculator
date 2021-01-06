@@ -81,7 +81,14 @@ class CalculatorContainer extends React.Component {
   onButtonClick (button) {
 
     const buttonType = getButtonType(button);
-    const { num1, num2, operator, prevButton, screenText } = this.state;
+    const {
+      num1,
+      num2,
+      operator,
+      prevButton, 
+      screenText,
+      showingResult,
+    } = this.state;
 
     // Regardless of the button clicked, let's keep track of the previous
     // button click.
@@ -96,7 +103,8 @@ class CalculatorContainer extends React.Component {
           // with the new digit, we are starting a new expression.
           newState.screenText = button;
         } else {
-          newState.screenText = screenText + button;
+          newState.screenText = showingResult ? button : screenText + button;
+          newState.showingResult = false;
         }
         this.setState(newState);
         break;
@@ -132,7 +140,8 @@ class CalculatorContainer extends React.Component {
           // implement a new way to know when previous action was evaluating
           // an expression so that the next digit entered will replace the
           // screen text.
-          newState.screenText = '';
+          newState.screenText = result;
+          newState.showingResult = true;
           newState.num1 = result;
           newState.operator = button;
           this.setState(newState);
