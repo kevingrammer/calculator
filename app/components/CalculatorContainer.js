@@ -169,6 +169,7 @@ class CalculatorContainer extends React.Component {
     return (
       <div className="outsideContainer">
         <div className="calcContainer">
+          <div className="calcTitle">Crapio</div>
           <Screen value={this.state.screenText} />
           <ButtonsContainer buttonClick={this.onButtonClick} />
           <button
