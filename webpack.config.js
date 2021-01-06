@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 var config = {
-  entry: __dirname + '/app/App.js',
+  entry: __dirname + '/app',
   output: {
     path: __dirname + '/',
   },
