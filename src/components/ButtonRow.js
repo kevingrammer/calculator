@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 
 const ButtonRow = ({ buttonClick, buttons }) => (
@@ -12,5 +13,10 @@ const ButtonRow = ({ buttonClick, buttons }) => (
     ))}
   </div>
 );
+
+ButtonRow.propTypes = {
+  buttonClick: PropTypes.func.isRequired,
+  buttons: PropTypes.array.isRequired,
+};
 
 export default ButtonRow;

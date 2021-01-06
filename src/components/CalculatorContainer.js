@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { getButtonType } from '../helpers';
-import _ from 'lodash';
 import ButtonsContainer from './ButtonsContainer';
 import Screen from './Screen';
 
@@ -8,8 +7,7 @@ const shouldClearAll = ({ calcs, num1, prevButton, screenText }) => {
   return prevButton === 'clear' && !screenText && (calcs.length > 0 || num1 !== null);
 };
 
-class CalculatorContainer extends React.Component {
-
+class CalculatorContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,13 +77,12 @@ class CalculatorContainer extends React.Component {
   }
 
   onButtonClick (button) {
-
     const buttonType = getButtonType(button);
     const {
       num1,
       num2,
       operator,
-      prevButton, 
+      prevButton,
       screenText,
       showingResult,
     } = this.state;
@@ -167,7 +164,7 @@ class CalculatorContainer extends React.Component {
 
       default:
         // This shouldn't happen!
-        console.error('Unhandled button click', { button });
+        console.error('Unhandled button click', { button }); // eslint-disable-line no-console
         break;
     }
   }

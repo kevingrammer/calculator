@@ -10,4 +10,4 @@ export function getButtonType(buttonId) {
     default:
       return 'digit';
   }
-};
+}

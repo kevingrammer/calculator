@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Screen = ({ value }) => (
   <div className="screen">
@@ -8,5 +9,9 @@ const Screen = ({ value }) => (
     </div>
   </div>
 );
+
+Screen.propTypes = {
+  value: PropTypes.node.isRequired,
+};
 
 export default Screen;

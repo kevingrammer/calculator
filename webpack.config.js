@@ -1,30 +1,38 @@
-var webpack = require('webpack');
-var path = require('path');
+const path = require("path");
+const webpack = require("webpack");
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-var config = {
-  entry: __dirname + '/app',
-  output: {
-    path: __dirname + '/',
-  },
-  devtool: 'source-maps',
+module.exports = {
+  entry: "./src/index.js",
+  mode: "development",
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react'],
-          plugins: ['transform-class-properties']
-        }
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "babel-loader",
+        options: { presets: ["@babel/env"] }
       },
       {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: 'style!css!sass'
-      },
+        test: /\.s[ac]ss$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
+      }
     ]
-  }
+  },
+  resolve: { extensions: ["*", ".js", ".jsx"] },
+  output: {
+    path: path.resolve(__dirname, "dist/"),
+    publicPath: "/dist/",
+    filename: "bundle.js"
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "public/"),
+    port: 3000,
+    publicPath: "http://localhost:3000/dist/",
+    hotOnly: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new ESLintPlugin()
+  ]
 };
-
-module.exports = config;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Button extends Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class Button extends Component {
     this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
-  handleButtonClick(e, button) {
+  handleButtonClick(e) {
     e.preventDefault();
     this.props.buttonClick(this.props.button);
   }
@@ -26,5 +27,10 @@ class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  button: PropTypes.string.isRequired,
+  buttonClick: PropTypes.func.isRequired,
+};
 
 export default Button;
