@@ -1,6 +1,6 @@
 {
   "name": "calculator",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "A simple calculator built with React",
   "main": "index.js",
   "scripts": {
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "git+https://github.com/kevingrammer/calculator.git"
   },
   "keywords": [
     "calculator"
   ],
-  "author": "kevingrammer",
+  "author": "Kevin Grammer",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.12.10",
