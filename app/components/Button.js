@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Button extends React.Component {
-
+class Button extends Component {
   constructor(props) {
     super(props);
     this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
+  handleButtonClick(e, button) {
+    e.preventDefault();
+    this.props.buttonClick(this.props.button);
+  }
+
   render() {
+    const { button } = this.props;
     return (
       <div className="buttonContainer">
-
-        <button className="button"
-          onClick={e => this.handleButtonClick(e, this.props.button)}>
-          {this.props.button}
+        <button
+          className="button"
+          onClick={this.handleButtonClick}
+          tabIndex={0}
+        >
+          {button}
         </button>
-
       </div>
     );
   }
-
-  handleButtonClick(e, button) {
-    e.preventDefault();
-    this.props.buttonClick(button);
-  }
-
 }
 
 export default Button;

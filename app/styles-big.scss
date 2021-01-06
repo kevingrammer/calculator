@@ -1,41 +1,44 @@
-body {
+// $base-font-size: 2rem;
+
+html {
   font-family: sans-serif;
-  font-size: 11px;
+  font-size: 62.5%; /* =10px */
 }
 
 .calcContainer {
-  padding: 0 10px 10px 10px;
-  border: 3px solid coral;
-  border-radius: 12px;
-  /*border-style: outset;*/
-  width: 120px;
-
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  box-shadow: 4px 4px cyan;
+  font-size: 3.6rem;
+  padding: 0 1rem 1rem 1rem;
+  width: 32rem;
+
+  border: .3rem solid coral;
+  border-radius: 1.2rem;
+  box-shadow: .4rem .4rem cyan;
 }
 
 .calcTitle {
   flex: 0 1 auto;
+  align-self: flex-start;
   text-transform: uppercase;
-  padding: 2px;
-  font-family: monospace;
+  padding: .2rem;
+  font-family: monospace, monospace;
   color: rgba(0, 0, 0, .2);
 }
 
 .screen {
-  font-family: monospace;
-  border: 1px solid coral;
-  box-shadow: 1px 1px coral;
-  border-radius: 1px;
-  padding: 3px 6px 3px 3px;
-  width: 104px;
-  height: 16px;
-  margin-left: 2px;
-  margin-bottom: 4px;
-
   flex: 0 1 auto;
+  font-family: monospace, monospace;
+  padding: .3rem .6rem .3rem .3rem;
+  width: 30rem;
+  height: 3.2rem;
+  margin: 0 0 .4rem .2rem;
+
+  border: .1rem solid coral;
+  box-shadow: .1rem .1rem coral;
+  border-radius: .1rem;
 }
 
 .screenText {
@@ -47,7 +50,7 @@ body {
 
 .buttonContainer {
   display: inline-block;
-  padding: 2px;
+  padding: .2rem;
   flex: 0 1 auto;
 }
 
@@ -56,16 +59,16 @@ body {
 }
 
 .button {
-  display: inline;
-  border-radius: 5px;
-  width: 25px;
-  cursor: pointer;
+  font-size: 3rem;
   font-weight: bold;
+
+  display: inline;
+  border: 1rem solid black;
+  border-radius: .5rem;
+  width: 7.5rem;
+  cursor: pointer;
   &:active {
-    border-top: none;
-    border-bottom: none;
-    border-left: 2px solid coral;
-    border-right: 2px solid coral;
+    border: none; // squishy buttons, just for fun.
   }
 }
 
@@ -74,10 +77,11 @@ body {
   border: none;
   flex: 0 1 auto;
   align-self: flex-end;
+  cursor: pointer;
 }
 
 hr {
-  margin: 20px 0 20px 0;
+  margin: 2rem 0;
 }
 
 /* Tooltip text */
@@ -86,7 +90,7 @@ hr {
   background-color: coral;
   color: white;
   padding: .25rem;
-  border-radius: 3px;
+  border-radius: .3rem;
 
   /* Position the tooltip text - see examples below! */
   position: absolute;

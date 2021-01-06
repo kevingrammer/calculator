@@ -1,10 +1,12 @@
 import React from 'react';
 import { getButtonType } from '../helpers';
 import _ from 'lodash';
-
 import ButtonsContainer from './ButtonsContainer';
 import Screen from './Screen';
-import '../styles.scss';
+
+const shouldClearAll = ({ calcs, num1, prevButton, screenText }) => {
+  return prevButton === 'clear' && !screenText && (calcs.length > 0 || num1 !== null);
+};
 
 class CalculatorContainer extends React.Component {
 
@@ -15,34 +17,29 @@ class CalculatorContainer extends React.Component {
       num1: null,
       operator: null,
       prevButton: null,
-      calcs: []
+      calcs: [],
     };
     this.onButtonClick = this.onButtonClick.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
-  render() {
+  clear() {
+    if (shouldClearAll(this.state)) {
+      this.setState({
+        screenText: '',
+        num1: null,
+        operator: null,
+        prevButton: null,
+        calcs: [],
+      });
+    } else {
+      this.setState({
+        screenText: '',
+        operator: null,
+        prevButton: 'clear',
+      });
+    }
 
-    return (
-      <div className="outsideContainer">
-        <div className="calcContainer">
-
-          <Screen value={this.state.screenText} />
-
-          <ButtonsContainer
-            buttonClick={(button) => this.onButtonClick(button)}
-            />
-
-        </div>
-
-        <hr />
-
-        <div className="calcsList">
-          {this.state.calcs.map((expression, i) => {
-            return <p key={i}>{expression}</p>
-          })}
-        </div>
-      </div>
-    );
   }
 
   // Helper method to get the current expression.
@@ -71,10 +68,11 @@ class CalculatorContainer extends React.Component {
         break;
     }
 
-    // @todo This needs to move, probably outside the calc container,
-    // definitely should not be setting state within this method.
     this.setState({
-      calcs: [n1 + ' ' + operator + ' ' + n2 + ' = ' + result, ...this.state.calcs]
+      calcs: [
+        n1 + ' ' + operator + ' ' + n2 + ' = ' + result,
+        ...this.state.calcs
+      ]
     });
 
     return result;
@@ -82,8 +80,15 @@ class CalculatorContainer extends React.Component {
 
   onButtonClick (button) {
 
-    let buttonType = getButtonType(button);
-    let state = this.state;
+    const buttonType = getButtonType(button);
+    const {
+      num1,
+      num2,
+      operator,
+      prevButton, 
+      screenText,
+      showingResult,
+    } = this.state;
 
     // Regardless of the button clicked, let's keep track of the previous
     // button click.
@@ -93,26 +98,27 @@ class CalculatorContainer extends React.Component {
 
     switch(buttonType) {
       case 'digit':
-        if(state.prevButton === '=') {
+        if(prevButton === '=') {
           // If we just evaluated an expression, replace the screen text
           // with the new digit, we are starting a new expression.
           newState.screenText = button;
         } else {
-          newState.screenText = state.screenText + button;
+          newState.screenText = showingResult ? button : screenText + button;
+          newState.showingResult = false;
         }
         this.setState(newState);
         break;
 
       case 'operator':
-        if (state.prevButton === '=') {
+        if (prevButton === '=') {
           // If we just evaluated an expression, replace the operator
           // and set num1 to the previous result.
-          newState.num1 = state.screenText;
+          newState.num1 = screenText;
           newState.screenText = '';
           newState.operator = button;
           this.setState(newState);
 
-        } else if (!state.screenText.length) {
+        } else if (!screenText.length) {
           // We can't handle negatives yet, need a separate button.
 
           // if (button === '-') {
@@ -120,23 +126,23 @@ class CalculatorContainer extends React.Component {
           //   this.setState(newState);
           // }
 
-        } else if (!state.num1) {
-          newState.num1 = Number(state.screenText);
+        } else if (!num1) {
+          newState.num1 = Number(screenText);
           newState.operator = button;
           newState.screenText = '';
           this.setState(newState);
 
-        } else if (!isNaN(Number(state.screenText))) {
+        } else if (!isNaN(Number(screenText))) {
           // Handles the case where user inputs "3,+,5,-",
           // should display result of "3+5" and setup "{result} - ".
-          let result = this.evaluateExpression(state.num1, state.screenText, state.operator);
+          let result = this.evaluateExpression(num1, screenText, operator);
           // @todo Should display the result as screen text, but will need to
           // implement a new way to know when previous action was evaluating
           // an expression so that the next digit entered will replace the
           // screen text.
-          newState.screenText = '';
+          newState.screenText = result;
+          newState.showingResult = true;
           newState.num1 = result;
-          // newState.num2 = state.screenText;
           newState.operator = button;
           this.setState(newState);
         }
@@ -144,26 +150,52 @@ class CalculatorContainer extends React.Component {
 
       case 'evaluate':
 
-        if(state.prevButton === '=') {
+        if(prevButton === '=') {
           // Repeat the previous calculation.
-          if(!isNaN(Number(state.screenText)) && state.num2 && state.operator) {
-            newState.screenText = this.evaluateExpression(state.screenText, state.num2, state.operator);
+          if(!isNaN(Number(screenText)) && num2 && operator) {
+            newState.screenText = this.evaluateExpression(screenText, num2, operator);
           }
 
-        } else if (state.num1 && state.operator && state.screenText.length && !isNaN(Number(state.screenText))) {
+        } else if (num1 && operator && screenText.length && !isNaN(Number(screenText))) {
           // If we have an complete expression, evaluate it.
-          newState.screenText = this.evaluateExpression(state.num1, state.screenText, state.operator);
+          newState.screenText = this.evaluateExpression(num1, screenText, operator);
           newState.num1 = null;
-          newState.num2 = state.screenText;
+          newState.num2 = screenText;
         }
         this.setState(newState);
         break;
 
       default:
         // This shouldn't happen!
-        console.log('unhandled button click', button);
+        console.error('Unhandled button click', { button });
         break;
     }
+  }
+
+  render() {
+    return (
+      <div className="outsideContainer">
+        <div className="calcContainer">
+          <div className="calcTitle">Crapio</div>
+          <Screen value={this.state.screenText} />
+          <ButtonsContainer buttonClick={this.onButtonClick} />
+          <button
+            className="clearButton"
+            onClick={this.clear}
+          >
+            {shouldClearAll(this.state) ? 'clear all' : 'clear'}
+          </button>
+        </div>
+
+        <hr />
+
+        <div className="calcsList">
+          {this.state.calcs.map((expression, i) => {
+            return <p key={i}>{expression}</p>
+          })}
+        </div>
+      </div>
+    );
   }
 }
 
