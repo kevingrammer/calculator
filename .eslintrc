@@ -14,5 +14,10 @@
     "no-console": "warn",
     "no-eval": "error",
     "import/first": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
