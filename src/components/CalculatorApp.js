@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { hot } from 'react-hot-loader/root';
 import Calculator from './Calculator';
+import '../styles.scss';
 
 const getButtonType = (buttonId) => {
   switch (buttonId) {
@@ -211,4 +213,4 @@ class CalculatorApp extends Component {
   }
 }
 
-export default CalculatorApp;
+export default hot(CalculatorApp);
