@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
-import CalculatorContainer from './components/CalculatorContainer';
+import CalculatorApp from './components/CalculatorApp';
 import './styles.scss';
 
 class App extends Component {
   render() {
-    return <CalculatorContainer />;
+    return <CalculatorApp />;
   }
 }
 

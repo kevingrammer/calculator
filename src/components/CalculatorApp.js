@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-import { getButtonType } from '../helpers';
-import ButtonsContainer from './ButtonsContainer';
-import Screen from './Screen';
+import Calculator from './Calculator';
+
+const getButtonType = (buttonId) => {
+  switch (buttonId) {
+    case '/':
+    case '*':
+    case '-':
+    case '+':
+      return 'operator';
+    case '=':
+      return 'evaluate';
+    default:
+      return 'digit';
+  }
+};
 
 const shouldClearAll = ({ calcs, num1, prevButton, screenText }) => {
   return (
@@ -9,7 +21,7 @@ const shouldClearAll = ({ calcs, num1, prevButton, screenText }) => {
   );
 };
 
-class CalculatorContainer extends Component {
+class CalculatorApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -180,14 +192,12 @@ class CalculatorContainer extends Component {
   render() {
     return (
       <div className="outsideContainer">
-        <div className="calcContainer">
-          <div className="calcTitle">Crapio</div>
-          <Screen value={this.state.screenText} />
-          <ButtonsContainer buttonClick={this.onButtonClick} />
-          <button className="clearButton" onClick={this.clear}>
-            {shouldClearAll(this.state) ? 'clear all' : 'clear'}
-          </button>
-        </div>
+        <Calculator
+          clearAll={shouldClearAll(this.state)}
+          onButtonClick={this.onButtonClick}
+          onClear={this.clear}
+          screenText={this.state.screenText}
+        />
 
         <hr />
 
@@ -201,4 +211,4 @@ class CalculatorContainer extends Component {
   }
 }
 
-export default CalculatorContainer;
+export default CalculatorApp;
