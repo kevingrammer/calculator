@@ -30,7 +30,10 @@ Calculator.propTypes = {
   clearAll: PropTypes.bool,
   onButtonClick: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
-  screenText: PropTypes.string,
+  screenText: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 Calculator.defaultProps = {
